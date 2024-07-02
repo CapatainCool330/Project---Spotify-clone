@@ -1,0 +1,52 @@
+# Query: songs
+# ContextLines: 1
+
+19 results - 1 file
+
+script.js:
+    1  let currentsong = new Audio();
+    2: let songs;
+    3  function secondsToMinutesSeconds(seconds) {
+
+   16  
+   17: async function getsongs(folde){
+   18  
+
+   23      let as = div.getElementsByTagName("a")
+   24:     songs = []
+   25      for (let index = 0; index < as.length; index++) {
+
+   27          if (element.href.endsWith(".mp3")) {
+   28:             songs.push(element.href.split(`/${folder}/`)[1])
+   29          }
+   30      }
+   31:     return (songs);
+   32      
+
+   34  const playmusic = (track, pause = false)=>{
+   35:     // let audio = new Audio("/songs/" + track)
+   36:     currentsong.src = "/songs/" + track
+   37      if(!pause){
+
+   47      
+   48:     // Get the list of all the songs
+   49:     songs = await getsongs()
+   50:     console.log(songs)
+   51:     playmusic(songs[0], true)
+   52:     // Show all the songs in the playlist
+   53      let songUL = document.querySelector(".songlist").getElementsByTagName("ul")[0]
+   54      songUL.innerHTML = ""
+   55:     for (const song of songs) {
+   56          songUL.innerHTML = songUL.innerHTML + `<li><img class="invert" width="34" src="music.svg" alt="">
+
+  113      prev.addEventListener("click", ()=>{
+  114:         let index = songs.indexOf(currentsong.src.split("/").slice(-1)[0])
+  115          if(index-1>=0){
+  116:             playmusic(songs[index-1])
+  117          }
+
+  120          currentsong.pause();
+  121:         let index = songs.indexOf(currentsong.src.split("/").slice(-1)[0])
+  122:         if(index+1< songs.length - 1){
+  123:             playmusic(songs[index+1])
+  124          }
